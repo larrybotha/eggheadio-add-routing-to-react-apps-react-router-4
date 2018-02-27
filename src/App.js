@@ -15,5 +15,11 @@ const App = () => (
       */}
       <Route exact path="/" component={Home} />
 
+      {/*
+	The qualifier 'strict' requires that if the path has a trailing slash or
+	not, that accessing the route via the client must be done in the same way
+      */}
+      {/* <Route strict path="/about/" component={Home} /> */}
+
 
 export default App;
