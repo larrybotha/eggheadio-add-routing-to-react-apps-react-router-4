@@ -21,5 +21,19 @@ const App = () => (
       */}
       {/* <Route strict path="/about/" component={Home} /> */}
 
+      {/* render allows us to use a function to render a path */}
+      {/* <Route path="/about" render={() => <h1>About</h1> } /> */}
+
+      {/*
+	children works similarly to render, except that it will render
+	regardless of the route.
+	We can use the match prop passed through to the child component
+	to render the route only when the route matches.
+	The 'match' prop is only populated when a route matches the path.
+      */}
+      <Route path="/about" children={({match}) => match && <h1>About</h1>} />
+    </div>
+  </Router>
+);
 
 export default App;
