@@ -1,35 +1,50 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
+
+import './App.css';
 
 const Home = () => <h1>Home</h1>;
 const About = () => <h1>About</h1>;
 const Contact = () => <h1>Contact</h1>;
 
+const isActive = (match, location) => {
+  console.log(match, location);
+
+  // if the route matches, our match argument will have a value
+  return match;
+};
+
 const Links = () => (
   <nav>
-    <Link to="/">Home</Link>
-
     {/*
-      we can pass an object through to 'to'
+      We need exact here to prevent the home NavLink being set as active whenever
+      children are active. Useful when you want a parent active, but disabled with
+      exact in the same way that a Route is disabled from matching when it has the
+      'exact' prop
     */}
-    <Link to={{pathname: '/about'}}>About</Link>
-
+    <NavLink exact activeClassName="active" to="/">
+      Home
+    </NavLink>{' '}
     {/*
-      We can also add a replace prop onto a Link. When doing so, the previous
-      URL will be replaced in history, and navigating back will skip the previous
-      URL.
+      activeStyle prop can be used instead of activeClassName
     */}
-    <Link replace to="/contact">
+    <NavLink activeStyle={{color: 'green'}} to="/about">
+      About
+    </NavLink>{' '}
+    {/*
+      If more flexibility is required then we can use the isActive prop which
+      expects a predicate function.
+
+      The function accepts (match, location)
+    */}
+    <NavLink isActive={isActive} to="/contact">
       Contact
-    </Link>
+    </NavLink>
   </nav>
 );
 
 const App = () => (
   <Router>
-    {/*
-      BrowserRouter can only have 1 child, so wrap everything in a div
-      */}
     <div>
       <Links />
       <Route exact path="/" component={Home} />
