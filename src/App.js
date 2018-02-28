@@ -7,29 +7,13 @@ const Contact = () => <h1>Contact</h1>;
 
 const Links = () => (
   <nav>
-    <Link to="/">Home</Link>
-
-    {/*
-      we can pass an object through to 'to'
-    */}
-    <Link to={{pathname: '/about'}}>About</Link>
-
-    {/*
-      We can also add a replace prop onto a Link. When doing so, the previous
-      URL will be replaced in history, and navigating back will skip the previous
-      URL.
-    */}
-    <Link replace to="/contact">
-      Contact
-    </Link>
+    <Link to="/">Home</Link> <Link to={{pathname: '/about'}}>About</Link>{' '}
+    <Link to="/contact">Contact</Link>
   </nav>
 );
 
 const App = () => (
   <Router>
-    {/*
-      BrowserRouter can only have 1 child, so wrap everything in a div
-      */}
     <div>
       <Links />
       <Route exact path="/" component={Home} />
