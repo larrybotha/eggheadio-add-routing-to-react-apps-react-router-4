@@ -5,19 +5,17 @@ const App = () => (
   <Router>
     <div>
       {/*
-        ? makes params optional
-
-        We aren't only restricted to subpaths - we could delimit the params
-        using some other delimeter, such as a hyphen:
-        /:page?-:subpage?
+        by usin parens we can add regular expression to matching our route
+        params.
+        If the regex doesn't match the param, the route won't be shown
       */}
       <Route
-        path="/:page?/:subpage?"
+        path="/:a(\d{2}-\d{2}-\d{4}):b(\.[a-z]+)"
         render={({match}) => (
           <h1>
-            Page: {match.params.page || 'Home'}
+            paramA: {match.params.a}
             <br />
-            SubPage: {match.params.subpage}
+            paramB: {match.params.b}
           </h1>
         )}
       />
