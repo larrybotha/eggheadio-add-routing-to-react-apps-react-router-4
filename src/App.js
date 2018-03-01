@@ -1,5 +1,15 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+const Links = () => (
+  <nav>
+    {/*
+      This query string will be added in its entirety to the location object
+      we receive on Route.
+      It will be on a search property of the location object:
+      {..., search: '?id=123', ...}
+    */}
+    <Link to="/?id=123">Inline</Link>
 
 const App = () => (
   <Router>
