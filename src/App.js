@@ -11,6 +11,15 @@ const Links = () => (
     */}
     <Link to="/?id=123">Inline</Link>
 
+    {/*
+      When using an object for 'to' the query can be added via the saerch property
+    */}
+    <Link to={{pathname: '/', search: '?id=456', hash: '#some-hash'}}>
+      Object
+    </Link>
+  </nav>
+);
+
 const App = () => (
   <Router>
     <div>
