@@ -34,6 +34,12 @@ const App = () => (
             */}
             <p>{JSON.stringify(match)}</p>
             <p>{JSON.stringify(location)}</p>
+
+            {/*
+              When full browser support comes we can use URLSearchParams to pull
+              values from query strings:
+            */}
+            {new URLSearchParams(location.search).get('id')}
           </div>
         )}
       />
