@@ -1,22 +1,11 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 const Links = () => (
   <nav>
-    {/*
-      This query string will be added in its entirety to the location object
-      we receive on Route.
-      It will be on a search property of the location object:
-      {..., search: '?id=123', ...}
-    */}
-    <Link to="/?id=123">Inline</Link>
-
-    {/*
-      When using an object for 'to' the query can be added via the saerch property
-    */}
-    <Link to={{pathname: '/', search: '?id=456', hash: '#some-hash'}}>
-      Object
-    </Link>
+    <Link to="/">Home</Link>
+    <Link to="/about">About</Link>
+    <Link to="/contact">Contact</Link>
   </nav>
 );
 
@@ -24,24 +13,21 @@ const App = () => (
   <Router>
     <div>
       <Links />
-      <Route
-        path="/"
-        render={({match, location}) => (
-          <div>
-            <p>root</p>
-            {/*
-              React Router doesn't provide a mechanism for parsing query strings
-            */}
-            <p>{JSON.stringify(match)}</p>
-            <p>{JSON.stringify(location)}</p>
+      {/*
+        Switch will only render the first route that matches
+      */}
+      <Switch>
+        <Route exact path="/" render={() => <h1>Home</h1>} />
+        <Route path="/about" render={() => <h1>About</h1>} />
+        <Route
+          render={() => (
+            <h1>Will only render inside Switch if no other routes match</h1>
+          )}
+        />
+      </Switch>
 
-            {/*
-              When full browser support comes we can use URLSearchParams to pull
-              values from query strings:
-            */}
-            {new URLSearchParams(location.search).get('id')}
-          </div>
-        )}
+      <Route
+        render={() => <h1>Route without a 'path' prop always renders</h1>}
       />
     </div>
   </Router>
