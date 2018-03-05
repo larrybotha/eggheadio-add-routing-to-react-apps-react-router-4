@@ -1,33 +1,21 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-const Links = () => (
-  <nav>
-    <Link to="/">Home</Link>
-    <Link to="/about">About</Link>
-    <Header />
-    <Content />
-  </nav>
-);
+const Home = () => <h1>Home</h1>;
+const Menu = () => (
+  <div>
+    <h1>Menu</h1>
 
-// Route is just a component, and so can be used anywhere as a descendant of
-// Router
-const Header = () => (
-  <div className="header">
-    <Route
-      exact
-      path="/:page"
-      render={({match}) => <h1>{match.params.page} header</h1>}
-    />
-  </div>
-);
+    <Link to="/menu/food">Food</Link>
+    <Link to="/menu/drinks">Drinks</Link>
+    <Link to="/menu/sides">Sides</Link>
 
-// We can render another Route component for the same path again
-const Content = () => (
-  <div className="content">
+    {/*
+      Nest a route inside this component that will match the above
+    */}
     <Route
-      path="/:page"
-      render={({match}) => <p>{match.params.page} content</p>}
+      path="/menu/:section"
+      render={({match}) => <h2>{match.params.section}</h2>}
     />
   </div>
 );
@@ -35,7 +23,10 @@ const Content = () => (
 const App = () => (
   <Router>
     <div>
-      <Links />
+      <Link to="/">Home</Link>
+      <Link to="/menu">Menu</Link>
+      <Route exact path="/" component={Home} />
+      <Route path="/menu" component={Menu} />
     </div>
   </Router>
 );
