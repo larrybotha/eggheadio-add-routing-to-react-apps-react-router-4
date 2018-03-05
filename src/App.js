@@ -22,6 +22,7 @@ const Header = () => (
   </div>
 );
 
+// We can render another Route component for the same path again
 const Content = () => (
   <div className="content">
     <Route
