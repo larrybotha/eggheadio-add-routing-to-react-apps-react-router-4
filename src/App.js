@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Redirect, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, Prompt} from 'react-router-dom';
 
 const Links = () => (
   <nav>
@@ -10,13 +10,26 @@ const Links = () => (
 
 const Home = () => <h1>Home</h1>;
 class Form extends React.Component {
-  state = {};
+  state = {dirty: false};
+
+  handleInput = () => {
+    this.setState({dirty: true});
+  };
 
   render() {
     return (
-      <form>
-        <input />
-      </form>
+      <div>
+        <h1>Form</h1>
+
+        <form>
+          {/*
+            Will show prompt if route changes and 'when' is true
+          */}
+          <Prompt when={this.state.dirty} message="Lose unsaved changes?" />
+
+          <input onInput={this.handleInput} />
+        </form>
+      </div>
     );
   }
 }
