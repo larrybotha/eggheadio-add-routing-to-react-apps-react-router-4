@@ -34,8 +34,10 @@ const App = () => (
 	  We can also pass query params through to th redirect.
 	*/}
       <Route
-	path="/old/:str"
-	render={({match}) => <Redirect to={`/new/${match.params.str}`} />}
+	path="/protected"
+	render={() =>
+	  loggedIn ? <h1>Welcome!</h1> : <Redirect to="/new/login" />
+	}
       />
     </div>
   </Router>
