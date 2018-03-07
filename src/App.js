@@ -56,3 +56,14 @@ const MemoryRouterApp = () => (
     <LinksRoutes />
   </MemoryRouter>
 );
+
+// used for server-side rendering
+const StaticRouterApp = () => (
+  // as with MemoryRouter, location sets the initial path of the app.
+  // context represents the URL that the server would have received
+  <StaticRouter location="/about" context={{}}>
+    <LinksRoutes />
+  </StaticRouter>
+);
+
+export default StaticRouterApp;
