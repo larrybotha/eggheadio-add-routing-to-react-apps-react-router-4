@@ -23,4 +23,16 @@ const LinksRoutes = () => (
   </div>
 );
 
-export default () => {};
+const forceRefresh = () => {
+  console.log(new Date());
+
+  return false;
+};
+
+// meant to be used with HTML5 history API
+const BrowserRouterApp = () => (
+  // forceRefresh accepts a boolean. When true, the entire app will rerender
+  <BrowserRouter forceRefresh={forceRefresh()}>
+    <LinksRoutes />
+  </BrowserRouter>
+);
