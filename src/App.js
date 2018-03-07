@@ -36,3 +36,13 @@ const BrowserRouterApp = () => (
     <LinksRoutes />
   </BrowserRouter>
 );
+
+// when we don't need to support the HTML5 history API we can use the hash router
+const HashRouterApp = () => (
+  // when hashType is slash (default) a slash is appended to the hash.
+  // when hashType is noslash, there is no slash after the hash.
+  // hashbang is another option supporting old methods for SEO
+  <HashRouter hashType="noslash">
+    <LinksRoutes />
+  </HashRouter>
+);
