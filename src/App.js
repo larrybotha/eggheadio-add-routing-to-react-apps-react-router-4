@@ -8,14 +8,12 @@ const Links = () => (
   </nav>
 );
 
-const App = () => (
-  <Router>
-    <div>
-      <Links />
-      <Route exact path="/" render={() => <h1>Home</h1>} />
-      <Route exact path="/about" render={() => <h1>About</h1>} />
-    </div>
-  </Router>
+const LinksRoutes = () => (
+  <div>
+    <Links />
+    <Route exact path="/" render={() => <h1>Home</h1>} />
+    <Route exact path="/about" render={() => <h1>About</h1>} />
+  </div>
 );
 
-export default App;
+export default () => {};
