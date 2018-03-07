@@ -46,3 +46,13 @@ const HashRouterApp = () => (
     <LinksRoutes />
   </HashRouter>
 );
+
+// MemoryRouter is an entirely in-memory Router, used primarily for testing.
+// Changes to routes don't show in the URL bar
+const MemoryRouterApp = () => (
+  // initialEntries specifices the different paths
+  // initialIndex specifies the index of the entry to render
+  <MemoryRouter initialEntries={['/', '/about']} initialIndex={1}>
+    <LinksRoutes />
+  </MemoryRouter>
+);
